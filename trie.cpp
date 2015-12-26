@@ -123,6 +123,11 @@ int main(int argc, char *argv[])
 {
 #if 1
 	trie t;
+	if(!argv[1])
+	{
+		printf("Please input files...\n");
+		return 0;
+	}
 	int num = t.loadFile(argv[1]);
 	for(int j = 0; j < num ; j++)
 	{
@@ -142,6 +147,12 @@ int main(int argc, char *argv[])
 	t.trieInsert(c);
 	t.trieInsert("abashed");
 #endif
+	if(!argv[2])
+	{
+		printf("Search Word is Null.\n");
+		t.trieDelete(t.root);
+		return 0;
+	}
 	if(t.trieSearch(argv[2]))
 	{
 		printf("find it.\n");
