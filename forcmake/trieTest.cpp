@@ -1,38 +1,4 @@
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stack>
-
-using namespace std;
-
-const int branchNum = 26;
-
-struct trieNode
-{
-	bool isStr;
-	trieNode *next[branchNum];
-	trieNode():isStr(false)
-	{
-		memset(next, NULL, sizeof(next));
-	}
-};
-
-
-class trie
-{
-public:
-	trie();
-	~trie();
-	void trieInsert(const char *word);
-	bool trieSearch(char *word);
-	void trieDelete(trieNode *root);
-	trieNode* getTrieNode();
-	bool trieDeleteWord(const char *word);
-private:
-	trieNode *root;
-};
-
+#include "trieTest.h"
 
 trie::trie()
 {
@@ -129,34 +95,4 @@ bool trie::trieDeleteWord(const char *word)
 		}
 		return true;
 	}
-}
-
-int main(int argc, char *argv[])
-{
-	trie t;
-	t.trieInsert("abefgdgihgdigidhgidhgjkfgh");
-	t.trieInsert("bcd");
-	t.trieInsert("def");
-	t.trieInsert("cdef");
-	t.trieInsert("befg");
-	t.trieInsert("fghi");
-	t.trieInsert("bcd");
-	t.trieInsert("abcd");
-
-	if(argc != 2)
-	{
-		printf("Please input Find word.\n");
-		return -1;
-	}
-	if(t.trieSearch(argv[1]))
-	{
-		printf("find it \n");
-		t.trieDeleteWord(argv[1]);
-		if(!t.trieSearch(argv[1]))
-		{
-			printf("delete word successful.\n");
-		}
-	}
-	t.trieDelete(t.getTrieNode());
-	return 0;
 }
