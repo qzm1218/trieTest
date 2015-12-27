@@ -143,14 +143,19 @@ int main(int argc, char *argv[])
 	t.trieInsert("bcd");
 	t.trieInsert("abcd");
 
+	if(argc != 2)
+	{
+		printf("Please input Find word.\n");
+		return -1;
+	}
 	if(t.trieSearch(argv[1]))
 	{
 		printf("find it \n");
-	}
-	t.trieDeleteWord(argv[1]);
-	if(!t.trieSearch(argv[1]))
-	{
-		printf("delete word successful.\n");
+		t.trieDeleteWord(argv[1]);
+		if(!t.trieSearch(argv[1]))
+		{
+			printf("delete word successful.\n");
+		}
 	}
 	t.trieDelete(t.getTrieNode());
 	return 0;
